@@ -1,5 +1,7 @@
 using BLL;
+using BLL.Util;
 using DAL;
+using DAL.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,8 +31,7 @@ namespace Demo
         public void ConfigureServices(IServiceCollection services)
         {
             // DI need to know about AddTransient, AddSingleton, AddScoped
-            services.AddSingleton<ISomeRepositroy, SomeRepository>();
-            services.AddTransient<ISomeService, SomeService>();
+            DIConfigurationBll.ConfigureServices(services);
             //
             services.AddControllers();
             services.AddSwaggerGen(c =>
